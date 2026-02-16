@@ -13,6 +13,9 @@ import com.movehouse.util.UserHolder;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import static com.movehouse.enums.UserTypeEnum.USER;
 
 @RestController
@@ -83,4 +86,19 @@ public class UserController {
         userService.edit(user);
         return Result.success(true);
     }
+
+    /**
+     * 管理员给用户充值
+     */
+    @PreAuthed // 默认管理员权限
+    @PatchMapping("/recharge")
+    public Result<Boolean> recharge(@RequestBody Map<String, Object> params) {
+        // 从参数中获取 id 和 amount
+        Long id = Long.valueOf(params.get("id").toString());
+        BigDecimal amount = new BigDecimal(params.get("amount").toString());
+
+        userService.recharge(id, amount);
+        return Result.success(true);
+    }
+
 }

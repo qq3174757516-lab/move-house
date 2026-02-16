@@ -15,6 +15,7 @@ public class PageParam {
     private Integer current = 1;
     private Integer size = 10;
     private String keyword;
+    private String type ;
 
     public <T> Page<T> page() {
         return new Page<>(current, size);

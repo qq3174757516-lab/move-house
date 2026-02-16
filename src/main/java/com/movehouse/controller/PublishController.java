@@ -1,5 +1,6 @@
 package com.movehouse.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.movehouse.annotation.PreAuthed;
 import com.movehouse.common.PageParam;
 import com.movehouse.common.PageResult;
@@ -10,6 +11,9 @@ import com.movehouse.service.PublishService;
 import com.movehouse.util.DbUtil;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.movehouse.enums.UserTypeEnum.DRIVER;
 import static com.movehouse.enums.UserTypeEnum.USER;
@@ -111,4 +115,26 @@ public class PublishController {
         publishService.process(id, isAccept);
         return Result.success(true);
     }
+
+    /**
+     * 获取搬家信息统计数据
+     */
+    @PreAuthed
+    @GetMapping("/stats")
+    public Result<Map<String, Object>> getStats() {
+        long total = publishService.count();
+        long published = publishService.count(new QueryWrapper<Publish>().eq("status", 0));
+        long valuated = publishService.count(new QueryWrapper<Publish>().eq("status", 1));
+        long finished = publishService.count(new QueryWrapper<Publish>().eq("status", 2));
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("total", total);
+        map.put("published", published);
+        map.put("valuated", valuated);
+        map.put("finished", finished);
+
+        return Result.success(map);
+    }
+
+
 }

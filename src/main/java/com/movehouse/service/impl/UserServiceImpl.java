@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.movehouse.common.LoginUser;
+import com.movehouse.common.MoveHouseRemind;
 import com.movehouse.common.PageParam;
 import com.movehouse.common.PageResult;
 import com.movehouse.controller.vo.LoginVo;
@@ -16,6 +17,7 @@ import com.movehouse.util.TokenUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import static cn.hutool.crypto.SecureUtil.md5;
@@ -98,4 +100,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User findByPhone(String phone) {
         return lambdaQuery().eq(User::getPhone, phone).one();
     }
+
+    @Override
+    public void recharge(Long id, BigDecimal amount) {
+        User user = getById(id);
+        if (user == null) {
+            throw com.movehouse.common.MoveHouseException.exception(MoveHouseRemind.USER_NOT_FOUND);
+        }
+        // 原余额 + 充值金额
+        user.setBalance(user.getBalance().add(amount));
+        updateById(user);
+    }
+
 }

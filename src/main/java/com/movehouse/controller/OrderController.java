@@ -42,4 +42,15 @@ public class OrderController {
         orderService.changeStatus(id, status);
         return Result.success(true);
     }
+
+
+    /**
+     *  管理员删除订单
+     */
+    @PreAuthed // 默认管理员权限
+    @DeleteMapping("/{id}")
+    public Result<Boolean> delete(@PathVariable Long id) {
+        orderService.removeById(id);
+        return Result.success(true);
+    }
 }

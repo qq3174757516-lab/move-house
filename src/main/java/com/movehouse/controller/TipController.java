@@ -1,6 +1,7 @@
 package com.movehouse.controller;
 
 import com.movehouse.annotation.PreAuthed;
+import com.movehouse.common.MoveHouseRemind;
 import com.movehouse.common.Result;
 import com.movehouse.entity.Tip;
 import com.movehouse.enums.UserTypeEnum;
@@ -77,4 +78,28 @@ public class TipController {
                 .list();
         return Result.success(list);
     }
+
+    /**
+     * 切换公告状态 (发布/下架)
+     *
+     * @param id 公告ID
+     */
+    @PreAuthed
+    @PatchMapping("/toggle/{id}")
+    public Result<Boolean> toggleStatus(@PathVariable Long id) {
+        Tip tip = tipService.getById(id);
+        if (tip == null) {
+            return Result.fail(MoveHouseRemind.TIP_NOT_FOUND);
+        }
+        // 对 status 进行取反操作
+        // 数据库中 status 是 bit(1) 类型，对应 Integer 0/1
+        // 0 表示禁用，1 表示启用
+        Integer currentStatus = tip.getStatus();
+        tip.setStatus(currentStatus == null || currentStatus == 0 ? 1 : 0);
+
+        tipService.updateById(tip);
+        return Result.success(true);
+    }
+
+
 }

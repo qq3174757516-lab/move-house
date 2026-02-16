@@ -43,11 +43,18 @@ public class CarServiceImpl extends ServiceImpl<CarMapper, Car> implements CarSe
 
     @Override
     public PageResult<Car> pageCar(PageParam param) {
-        //根据参数查询
+// 根据参数查询
         String keyword = param.getKeyword();
+        // [新增] 获取类型参数
+        String type = param.getType();
+
         Page<Car> page = lambdaQuery()
+                //关键字模糊查询名称
                 .like(StrUtil.isNotBlank(keyword), Car::getName, keyword)
+                // 逻辑：如果 type 不为空，则精确匹配车辆类型
+                .eq(StrUtil.isNotBlank(type), Car::getType, type)
                 .page(param.page());
+
         return new PageResult<>(page.getTotal(), page.getRecords());
     }
 }

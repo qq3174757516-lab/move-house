@@ -42,4 +42,16 @@ public class ComplaintController {
         PageResult<Complaint> pageResult = complaintService.pageComplaint(vo);
         return Result.success(pageResult);
     }
+
+    /**
+     * 删除投诉信息 (视为已处理)
+     */
+    @PreAuthed
+    @DeleteMapping("/{id}")
+    public Result<Boolean> delete(@PathVariable Long id) {
+        complaintService.removeById(id);
+        return Result.success(true);
+    }
+
+
 }

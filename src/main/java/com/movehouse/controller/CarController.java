@@ -1,5 +1,6 @@
 package com.movehouse.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.movehouse.annotation.PreAuthed;
 import com.movehouse.common.PageParam;
 import com.movehouse.common.PageResult;
@@ -9,7 +10,9 @@ import com.movehouse.service.CarService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/car")
@@ -69,4 +72,26 @@ public class CarController {
                 .list();
         return Result.success(list);
     }
+
+    /**
+     *  获取车辆状态统计
+     * 返回：总数、空闲数、使用中数
+     */
+    @PreAuthed
+    @GetMapping("/stats")
+    public Result<Map<String, Object>> getCarStats() {
+        // 状态: 0=空闲, 1=使用中
+        // 注意：数据库中 status 是 bit(1)，MyBatisPlus 通常映射为 Boolean (false=0, true=1)
+        long total = carService.count();
+        long busy = carService.count(new QueryWrapper<Car>().eq("status", 1)); // 1 为使用中
+        long free = total - busy;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("total", total);
+        map.put("busy", busy);
+        map.put("free", free);
+
+        return Result.success(map);
+    }
+
 }

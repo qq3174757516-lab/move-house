@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f26d1d4-01b1-4da6-852c-4922ef57ef98" name="Changes" comment="" />
+    <list default="true" id="1f26d1d4-01b1-4da6-852c-4922ef57ef98" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/common/MoveHouseRemind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/common/MoveHouseRemind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/common/PageParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/common/PageParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/ComplaintController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/ComplaintController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/TipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/TipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/CarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/CarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/UserServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "qq3174757516-lab"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:qq3174757516-lab/move-house.git",
+    "accountId": "7b341dfa-7412-48d8-a497-beb420c2460f"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -47,6 +73,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2PsUag9EKVeHMvbkH03ZppSOI1f" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -63,6 +92,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.MoveHouseApplication.executor": "Debug",
@@ -173,6 +203,9 @@
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="逻辑" />
+  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\z\AppData\Roaming\Subversion</configuration>
   </component>
@@ -203,6 +236,7 @@
       <workItem from="1770697448668" duration="193000" />
       <workItem from="1771222993372" duration="175000" />
       <workItem from="1771223181855" duration="2288000" />
+      <workItem from="1771228320847" duration="11737000" />
     </task>
     <servers />
   </component>
@@ -211,6 +245,17 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="application.yml" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

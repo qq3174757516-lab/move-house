@@ -16,6 +16,9 @@ public enum MoveHouseRemind {
     NOT_FOUND(404, "资源不存在!"),
     USERNAME_OR_PASSWORD_ERROR(500, "用户名或密码错误!"),
     USER_EXISTS(500, "用户已存在!"),
+    USER_NOT_FOUND(500, "用户不存在!"),
+    TIP_NOT_FOUND(500, "公告不存在!"),
+
     ;
     private final int code;
     private final String message;
