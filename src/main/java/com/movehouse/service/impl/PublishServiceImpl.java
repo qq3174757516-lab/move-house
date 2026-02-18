@@ -1,6 +1,7 @@
 package com.movehouse.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.movehouse.common.LoginUser;
@@ -41,16 +42,44 @@ public class PublishServiceImpl extends ServiceImpl<PublishMapper, Publish> impl
 
     @Override
     public PageResult<Publish> pagePublish(PageParam param) {
-        UserTypeEnum userType = UserHolder.getUserType();
+        LoginUser loginUser = UserHolder.get();
         String keyword = param.getKeyword();
-        Page<Publish> page = lambdaQuery().and(StrUtil.isNotBlank(keyword), e -> e
-                        .like(Publish::getTitle, keyword).or()
-                        .like(Publish::getAddress, keyword))
-                //用户只能查询自己发布的信息
-                .eq(userType.equals(USER), Publish::getUserId, UserHolder.getId())
-                .ne(userType.equals(DRIVER), Publish::getStatus, 2)
-                .orderByDesc(Publish::getCreateTime)
-                .page(param.page());
+
+        // 采用分步构建 Wrapper 的方式
+        LambdaQueryWrapper<Publish> wrapper = new LambdaQueryWrapper<>();
+
+        // 1. 关键字搜索逻辑 (标题或地址)
+        if (StrUtil.isNotBlank(keyword)) {
+            // 这里为了保证 SQL 语句生成正确的括号 (title LIKE ? OR address LIKE ?)，使用一次简短的 lambda
+            wrapper.and(w -> w.like(Publish::getTitle, keyword).or().like(Publish::getAddress, keyword));
+        }
+
+        // 2. 根据角色身份分配查询条件
+        if (loginUser == null) {
+            // 【访客逻辑】：未登录的情况下，只能看到大厅里待接单的信息
+            wrapper.eq(Publish::getStatus, 0);
+        } else {
+            // 【已登录逻辑】
+            UserTypeEnum userType = UserHolder.getUserType();
+            // 在这里获取 currentUserId，它只被赋值一次，满足 Java "实际上的最终变量" 要求，彻底解决报错
+            Long currentUserId = UserHolder.getId();
+
+            if (USER.equals(userType)) {
+                // 普通用户：只能看到自己发布的单子
+                wrapper.eq(Publish::getUserId, currentUserId);
+
+            } else if (DRIVER.equals(userType)) {
+                // 司机：能看到待接单的信息，或者自己已经出价抢单的信息
+                wrapper.and(w -> w.eq(Publish::getStatus, 0).or().eq(Publish::getDriverId, currentUserId));
+            }
+        }
+
+        // 3. 按发布时间倒序排列
+        wrapper.orderByDesc(Publish::getCreateTime);
+
+        // 4. 执行分页查询
+        Page<Publish> page = this.page(param.page(), wrapper);
+
         return new PageResult<>(page.getPages(), page.getRecords());
     }
 
