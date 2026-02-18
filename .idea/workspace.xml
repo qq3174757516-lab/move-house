@@ -4,29 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f26d1d4-01b1-4da6-852c-4922ef57ef98" name="Changes" comment="Changes">
+    <list default="true" id="1f26d1d4-01b1-4da6-852c-4922ef57ef98" name="Changes" comment="优化及新增功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/common/MoveHouseRemind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/common/MoveHouseRemind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/common/PageParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/common/PageParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/CarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/ComplaintController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/ComplaintController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/TipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/TipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/CarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/CarServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AddressBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/controller/AddressBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/entity/Publish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/entity/Publish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movehouse/service/impl/OrderServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+      <option value="repository" />
+    </option>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -34,18 +33,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "qq3174757516-lab"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;qq3174757516-lab&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:qq3174757516-lab/move-house.git",
-    "accountId": "7b341dfa-7412-48d8-a497-beb420c2460f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:qq3174757516-lab/move-house.git&quot;,
+    &quot;accountId&quot;: &quot;7b341dfa-7412-48d8-a497-beb420c2460f&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/movehouse/controller/PublishController.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -95,7 +94,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.MoveHouseApplication.executor": "Debug",
+    "Spring Boot.MoveHouseApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
@@ -236,8 +235,35 @@
       <workItem from="1770697448668" duration="193000" />
       <workItem from="1771222993372" duration="175000" />
       <workItem from="1771223181855" duration="2288000" />
-      <workItem from="1771228320847" duration="11737000" />
+      <workItem from="1771228320847" duration="11975000" />
+      <workItem from="1771315123176" duration="10919000" />
+      <workItem from="1771381016522" duration="13150000" />
     </task>
+    <task id="LOCAL-00001" summary="优化及新增功能">
+      <option name="closed" value="true" />
+      <created>1771251291518</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1771251291518</updated>
+    </task>
+    <task id="LOCAL-00002" summary="优化及新增功能">
+      <option name="closed" value="true" />
+      <created>1771386461211</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771386461211</updated>
+    </task>
+    <task id="LOCAL-00003" summary="优化及新增功能">
+      <option name="closed" value="true" />
+      <created>1771407914724</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1771407914724</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,5 +287,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/move_house_admin" />
     </ignored-roots>
+    <MESSAGE value="优化及新增功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化及新增功能" />
   </component>
 </project>

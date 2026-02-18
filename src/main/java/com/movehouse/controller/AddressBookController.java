@@ -20,8 +20,8 @@ public class AddressBookController {
     @Autowired
     private AddressBookService addressBookService;
 
-    // 获取当前用户的地址列表
-    @PreAuthed
+    // 👇 核心修复：添加 (UserTypeEnum.USER)，允许普通用户拉取自己的地址列表
+    @PreAuthed(UserTypeEnum.USER)
     @GetMapping("/list")
     public Result<List<AddressBook>> list() {
         Long userId = UserHolder.get().getId();
@@ -36,7 +36,7 @@ public class AddressBookController {
     @PostMapping
     public Result<Boolean> saveOrUpdate(@RequestBody AddressBook addressBook) {
         addressBook.setUserId(UserHolder.get().getId());
-        if (addressBook.getIsDefault()) {
+        if (addressBook.getIsDefault() != null && addressBook.getIsDefault()) {
             // 如果设为默认，先把其他的取消默认
             addressBookService.update(new LambdaUpdateWrapper<AddressBook>()
                     .eq(AddressBook::getUserId, addressBook.getUserId())

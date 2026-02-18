@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 @Data
 @Accessors(chain = true)
 @TableName("orders")
@@ -21,30 +20,26 @@ public class Order implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
     private String orderNo;
-
     private Long userId;
-
     private String username;
-
     private Long driverId;
-
     private String driverName;
-
     private BigDecimal price;
 
-    //0未完成, 1已到达, 2已完成
+    // 0未完成, 1已到达, 2已完成
     private Integer status;
-
     private String address;
-
     private Date createTime;
-
     private Date arriveTime;
-
     private Date finishTime;
 
     @TableField(exist = false)
     private Boolean isComplaint;
+
+    // 👇 以下是必须补全的数据库已有字段
+    private String originAddress;      // 起点
+    private String destinationAddress; // 终点
+    private String cargoDescription;   // 货物描述快照
+    private BigDecimal distance;       // 距离
 }

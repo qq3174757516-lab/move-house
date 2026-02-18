@@ -18,6 +18,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import static com.movehouse.common.MoveHouseException.exception;
@@ -39,21 +40,32 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public void payment(Publish publish) {
         User user = userService.getById(publish.getUserId());
         Driver driver = driverService.getById(publish.getDriverId());
+
         //校验用户余额
         if (user.getBalance().compareTo(publish.getValuation()) < 0) {
-            throw exception(500, "用户余额不足!");
+            throw exception(500, "用户余额不足，请先前往个人中心充值!");
         }
+        //暂扣用户余额（平台托管）
         user.setBalance(user.getBalance().subtract(publish.getValuation()));
 
         Order order = new Order();
         String orderNo = RandomUtil.randomNumbers(12);
-        order.setOrderNo(orderNo).setUserId(user.getId())
+
+        // 核心修复：把所有搬家详细信息拷贝到订单表中
+        order.setOrderNo(orderNo)
+                .setUserId(user.getId())
                 .setUsername(user.getUsername())
                 .setDriverId(driver.getId())
                 .setDriverName(driver.getName())
                 .setPrice(publish.getValuation())
                 .setAddress(publish.getAddress())
+                .setOriginAddress(publish.getOriginAddress())
+                .setDestinationAddress(publish.getDestinationAddress())
+                .setCargoDescription(publish.getGoodsDesc())
+                .setDistance(publish.getDistance())
+                .setStatus(0) // 状态置为0，代表等待司机前往
                 .setCreateTime(new Date());
+
         save(order);
         userService.updateById(user);
     }
@@ -69,6 +81,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 .eq(userType.equals(DRIVER), Order::getDriverId, id)
                 .orderByDesc(Order::getCreateTime)
                 .page(param.page());
+
         page.getRecords().forEach(e -> {
             boolean exists = complaintService.lambdaQuery()
                     .eq(Complaint::getOrderId, e.getId())
@@ -83,12 +96,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public void changeStatus(Long id, Integer status) {
         Order order = DbUtil.checkNotFound(id, this);
         if (status == 0) {
+            // 司机已到达
             order.setArriveTime(new Date()).setStatus(1);
         } else {
-            //订单完成, 将订单的钱转入司机账户
+            // 核心修复：订单彻底完成, 将订单的钱“累加”转入司机账户，防止覆盖
             Driver driver = driverService.getById(order.getDriverId());
-            driver.setIncome(order.getPrice());
+            BigDecimal currentIncome = driver.getIncome() == null ? BigDecimal.ZERO : driver.getIncome();
+            driver.setIncome(currentIncome.add(order.getPrice()));
             driverService.updateById(driver);
+
             order.setFinishTime(new Date()).setStatus(2);
         }
         updateById(order);
